@@ -1,0 +1,8 @@
+# components/parameters/OrderIdParam.yaml
+name: orderId
+in: path
+required: true
+description: 注文のID
+schema:
+  type: integer
+  format: int64

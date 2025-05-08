@@ -1,0 +1,42 @@
+erDiagram
+    Users ||--o{ Orders : "places"
+    Orders ||--o{ OrderItems : "contains"
+    Products ||--o{ OrderItems : "details in"
+
+    Users {
+        INT id PK "ユーザーID (システム生成)"
+        VARCHAR username "ユーザー名 (必須)"
+        VARCHAR email "メールアドレス (必須, 一意)"
+        VARCHAR password_hash "ハッシュ化されたパスワード (DB保存用, 必須)"
+        DATETIME created_at "作成日時 (システム生成)"
+        DATETIME updated_at "更新日時 (システム生成)"
+    }
+
+    Products {
+        INT id PK "商品ID (システム生成)"
+        VARCHAR name "商品名 (必須)"
+        TEXT description "商品説明 (必須)"
+        INT price "価格(円) (必須)"
+        INT stock "在庫数 (必須)"
+        VARCHAR image_url "商品画像URL (NULL可)"
+        DATETIME created_at "作成日時 (システム生成)"
+        DATETIME updated_at "更新日時 (システム生成)"
+    }
+
+    Orders {
+        INT id PK "注文ID (システム生成)"
+        INT user_id FK "ユーザーID (Usersテーブルへの外部キー, 必須)"
+        INT total_amount "合計金額(円) (必須)"
+        VARCHAR status "注文ステータス (必須, 例: pending, processing, shipped, delivered, cancelled)"
+        TEXT shipping_address "配送先住所 (必須)"
+        DATETIME ordered_at "注文日時 (システム生成)"
+        DATETIME updated_at "更新日時 (システム生成)"
+    }
+
+    OrderItems {
+        INT id PK "注文明細ID (システム生成)"
+        INT order_id FK "注文ID (Ordersテーブルへの外部キー, 必須)"
+        INT product_id FK "商品ID (Productsテーブルへの外部キー, 必須)"
+        INT quantity "数量 (必須, 1以上)"
+        INT price_at_purchase "購入時単価(円) (必須)"
+    }

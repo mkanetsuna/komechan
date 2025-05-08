@@ -1,0 +1,15 @@
+# components/schemas/Error.yaml
+type: object
+properties:
+  code:
+    type: integer
+    format: int32
+    description: エラーコード
+    example: 404
+  message:
+    type: string
+    description: エラーメッセージ
+    example: "指定されたリソースは見つかりませんでした。"
+required:
+  - code
+  - message

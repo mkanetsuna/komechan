@@ -1,0 +1,8 @@
+# components/parameters/UserIdParam.yaml
+name: userId
+in: path
+required: true
+description: ユーザーのID
+schema:
+  type: integer
+  format: int64

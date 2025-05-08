@@ -1,0 +1,22 @@
+# components/schemas/OrderCreationRequest.yaml
+type: object
+description: 注文作成リクエスト
+properties:
+  user_id:
+    type: integer
+    format: int64
+    description: ユーザーID (注文者)
+    example: 1
+  shipping_address:
+    type: string
+    description: 配送先住所
+    example: "東京都千代田区丸の内1-1-1"
+  order_items:
+    type: array
+    items:
+      $ref: './OrderItemCreationRequest.yaml' # Relative path
+    minItems: 1
+required:
+  - user_id
+  - shipping_address
+  - order_items

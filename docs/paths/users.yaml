@@ -1,0 +1,49 @@
+# paths/users.yaml
+# Contains path definitions related to users.
+# Referenced from the root openapi.yaml file.
+
+paths: # This top-level 'paths' key is important for the $ref in the root file
+  /users:
+    post:
+      summary: 新規ユーザー作成
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/UserCreationRequest.yaml' # Relative path to the schema
+      responses:
+        '201':
+          description: ユーザー作成成功
+          content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/User.yaml'
+        '400':
+          description: 不正なリクエスト
+          content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/Error.yaml'
+  /users/{userId}:
+    get:
+      summary: ユーザー情報取得
+      tags:
+        - User
+      parameters:
+        - $ref: '../components/parameters/UserIdParam.yaml' # Relative path to the parameter
+      responses:
+        '200':
+          description: ユーザー情報取得成功
+          content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/User.yaml'
+        '404':
+          description: ユーザーが見つかりません
+          content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/Error.yaml'

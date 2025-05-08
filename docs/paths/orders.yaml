@@ -1,0 +1,48 @@
+# paths/orders.yaml
+# Contains path definitions related to orders.
+
+paths:
+  /orders:
+    post:
+      summary: 新規注文作成
+      tags:
+        - Order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/OrderCreationRequest.yaml'
+      responses:
+        '201':
+          description: 注文作成成功
+          content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/Order.yaml'
+        '400':
+          description: 不正なリクエスト (在庫不足など)
+          content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/Error.yaml'
+  /orders/{orderId}:
+    get:
+      summary: 注文詳細取得
+      tags:
+        - Order
+      parameters:
+        - $ref: '../components/parameters/OrderIdParam.yaml'
+      responses:
+        '200':
+          description: 注文詳細取得成功
+          content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/Order.yaml'
+        '404':
+          description: 注文が見つかりません
+          content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/Error.yaml'

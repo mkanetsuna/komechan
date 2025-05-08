@@ -1,0 +1,22 @@
+# components/schemas/UserCreationRequest.yaml
+type: object
+description: ユーザー作成リクエスト
+properties:
+  username:
+    type: string
+    description: ユーザー名
+    example: "yamada_taro"
+  email:
+    type: string
+    format: email
+    description: メールアドレス
+    example: "yamada_taro@example.com"
+  password:
+    type: string
+    format: password
+    description: パスワード
+    example: "securePassword123"
+required:
+  - username
+  - email
+  - password

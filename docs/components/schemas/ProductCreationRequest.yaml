@@ -1,0 +1,32 @@
+# components/schemas/ProductCreationRequest.yaml
+type: object
+description: 商品作成リクエスト
+properties:
+  name:
+    type: string
+    description: 商品名
+    example: "高機能ワイヤレスイヤホン"
+  description:
+    type: string
+    description: 商品説明
+    example: "ノイズキャンセリング機能付きの最新モデルです。"
+  price:
+    type: integer
+    format: int32
+    description: 価格 (円)
+    example: 15000
+  stock:
+    type: integer
+    format: int32
+    description: 在庫数
+    example: 100
+  image_url:
+    type: string
+    format: url
+    nullable: true
+    description: 商品画像URL
+    example: "https://example.com/images/earphone.jpg"
+required:
+  - name
+  - price
+  - stock

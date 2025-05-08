@@ -1,0 +1,8 @@
+# components/parameters/ProductIdParam.yaml
+name: productId
+in: path
+required: true
+description: 商品のID
+schema:
+  type: integer
+  format: int64

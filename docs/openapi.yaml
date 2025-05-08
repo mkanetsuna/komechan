@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: Simple EC Site API (Split)
+  version: "1.0.0"
+  description: A simple API for an e-commerce site backend, with definitions split into multiple files.
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Development server
+
+# Path definitions are grouped by resource and referenced from external files
+paths:
+  /users:
+    $ref: './paths/users.yaml#/paths/~1users' # Points to the /users path definition in users.yaml
+  /users/{userId}:
+    $ref: './paths/users.yaml#/paths/~1users~1{userId}' # Points to the /users/{userId} path definition in users.yaml
+  /products:
+    $ref: './paths/products.yaml#/paths/~1products'
+  /products/{productId}:
+    $ref: './paths/products.yaml#/paths/~1products~1{productId}'
+  /orders:
+    $ref: './paths/orders.yaml#/paths/~1orders'
+  /orders/{orderId}:
+    $ref: './paths/orders.yaml#/paths/~1orders~1{orderId}'
+
+components:
+  schemas:
+    User:
+      $ref: './components/schemas/User.yaml'
+    UserCreationRequest:
+      $ref: './components/schemas/UserCreationRequest.yaml'
+    Product:
+      $ref: './components/schemas/Product.yaml'
+    ProductCreationRequest:
+      $ref: './components/schemas/ProductCreationRequest.yaml'
+    Order:
+      $ref: './components/schemas/Order.yaml'
+    OrderCreationRequest:
+      $ref: './components/schemas/OrderCreationRequest.yaml'
+    OrderItem:
+      $ref: './components/schemas/OrderItem.yaml'
+    OrderItemCreationRequest:
+      $ref: './components/schemas/OrderItemCreationRequest.yaml'
+    Error:
+      $ref: './components/schemas/Error.yaml'
+  parameters:
+    UserIdParam:
+      $ref: './components/parameters/UserIdParam.yaml'
+    ProductIdParam:
+      $ref: './components/parameters/ProductIdParam.yaml'
+    OrderIdParam:
+      $ref: './components/parameters/OrderIdParam.yaml'

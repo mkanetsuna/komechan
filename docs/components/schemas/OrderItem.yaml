@@ -1,0 +1,35 @@
+# components/schemas/OrderItem.yaml
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+    description: 注文明細ID
+    readOnly: true
+    example: 301
+  order_id:
+    type: integer
+    format: int64
+    description: 注文ID
+    example: 201
+  product_id:
+    type: integer
+    format: int64
+    description: 商品ID
+    example: 101
+  quantity:
+    type: integer
+    format: int32
+    description: 数量
+    minimum: 1
+    example: 2
+  price_at_purchase:
+    type: integer
+    format: int32
+    description: 購入時単価 (円)
+    example: 15000
+required:
+  - order_id
+  - product_id
+  - quantity
+  - price_at_purchase

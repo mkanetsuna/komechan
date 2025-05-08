@@ -1,0 +1,61 @@
+# paths/products.yaml
+# Contains path definitions related to products.
+
+paths:
+  /products:
+    get:
+      summary: 商品一覧取得
+      tags:
+        - Product
+      responses:
+        '200':
+          description: 商品一覧取得成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '../components/schemas/Product.yaml'
+    post:
+      summary: 新規商品登録
+      tags:
+        - Product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ProductCreationRequest.yaml'
+      responses:
+        '201':
+          description: 商品登録成功
+          content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/Product.yaml'
+        '400':
+          description: 不正なリクエスト
+          content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/Error.yaml'
+  /products/{productId}:
+    get:
+      summary: 商品詳細取得
+      tags:
+        - Product
+      parameters:
+        - $ref: '../components/parameters/ProductIdParam.yaml'
+      responses:
+        '200':
+          description: 商品詳細取得成功
+          content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/Product.yaml'
+        '404':
+          description: 商品が見つかりません
+          content:
+            application/json:
+              schema:
+                $ref: '../components/schemas/Error.yaml'

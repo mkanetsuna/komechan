@@ -1,0 +1,18 @@
+# components/schemas/OrderItemCreationRequest.yaml
+type: object
+description: 注文明細作成リクエスト (注文作成時に使用)
+properties:
+  product_id:
+    type: integer
+    format: int64
+    description: 商品ID
+    example: 101
+  quantity:
+    type: integer
+    format: int32
+    description: 数量
+    minimum: 1
+    example: 2
+required:
+  - product_id
+  - quantity
